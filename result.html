@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block content %}
+    <div class="result-card {% if prediction == 1 %}high-risk{% else %}low-risk{% endif %}">
+        <h2>Diabetes Risk Assessment</h2>
+        <div class="probability-badge">
+            {{ probability }}
+            {% if prediction == 1 %}
+            <i class="fas fa-exclamation-triangle"></i>
+            {% else %}
+            <i class="fas fa-check-circle"></i>
+            {% endif %}
+        </div>
+        
+        <div class="risk-gauge">
+            <div class="gauge-fill"></div>
+        </div>
+        <p class="risk-verdict">
+            {% if prediction == 1 %}
+            🚨 High Risk of Diabetes Detected
+            {% else %}
+            ✅ Low Risk of Diabetes Detected
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="result-section">
+        <h3><i class="fas fa-info-circle"></i> BMI Analysis</h3>
+        <p>{{ bmi_explanation }}</p>
+    </div>
+
+    <div class="chart-container">
+        <img src="data:image/png;base64,{{ charts.radar }}" alt="Health Metrics Radar">
+        <img src="data:image/png;base64,{{ charts.risk }}" alt="Risk Factors">
+    </div>
+
+    {% if factors %}
+    <div class="result-section">
+        <h3><i class="fas fa-exclamation-triangle"></i> Key Risk Factors</h3>
+        <ul class="risk-factors">
+            {% for factor in factors %}
+            <li>{{ factor }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <div class="action-buttons">
+        <a href="/" class="btn secondary">
+            <i class="fas fa-redo"></i> New Assessment
+        </a>
+        <a href="/report" class="btn primary">
+            <i class="fas fa-file-pdf"></i> Download Report
+        </a>
+    </div>
+{% endblock %}

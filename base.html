@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="{{ current_theme }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Risk Pro | {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="header-content">
+                <h1><i class="fas fa-heartbeat"></i> Diabetes Risk Pro</h1>
+                <div class="header-controls">
+                    <button id="themeToggle" class="control-btn" title="Toggle Dark Mode">
+                        <i class="fas fa-moon"></i>
+                        <i class="fas fa-sun" style="display: none;"></i>
+                    </button>
+                    <a href="/data-analysis" class="control-btn" title="View Data Analysis">
+                        <i class="fas fa-chart-bar"></i>
+                    </a>
+                </div>
+            </div>
+            {% if patient_id %}
+            <p class="patient-id">Patient ID: {{ patient_id }}</p>
+            {% endif %}
+        </header>
+
+        <main class="app-main">
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Data Analysis{% endblock %}
+
+{% block content %}
+    <section class="data-section">
+        <h2><i class="fas fa-chart-bar"></i> Dataset Analysis</h2>
+        
+        <div class="chart-container">
+            <h3>Diabetes Distribution</h3>
+            <img src="data:image/png;base64,{{ pie_chart }}" alt="Diabetes Distribution">
+        </div>
+        
+        <div class="chart-container">
+            <h3>Glucose Levels by Diabetes Status</h3>
+            <img src="data:image/png;base64,{{ glucose_boxplot }}" alt="Glucose Levels">
+        </div>
+        
+        <div class="data-stats">
+            <h3>Statistical Summary</h3>
+            {{ stats|safe }}
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .data-stats {
+        overflow-x: auto;
+        margin-top: 2rem;
+    }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid var(--secondary);
+    }
+    .table th {
+        background-color: var(--primary);
+        color: white;
+    }
+    .table-striped tr:nth-child(even) {
+        background-color: rgba(0,0,0,0.05);
+    }
+    [data-theme="dark"] .table-striped tr:nth-child(even) {
+        background-color: rgba(255,255,255,0.05);
+    }
+</style>
+{% endblock %}
