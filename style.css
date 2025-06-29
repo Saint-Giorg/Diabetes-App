@@ -61,8 +61,18 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0.5rem;
+    
 }
-
+.generic-name{
+    cursor: pointer;
+    
+}
+.underlined{
+    text-decoration: none;
+}
+.underlined.clicked {
+    color: white !important;
+}
 .header-controls {
     display: flex;
     gap: 10px;
@@ -380,4 +390,11 @@ input:focus, select:focus {
     .header-controls {
         margin-top: 1rem;
     }
+}
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.5;
+    font-size: 12px;
 }
